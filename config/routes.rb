@@ -1,0 +1,8 @@
+Rails.application.routes.draw do
+  get 'portfolio/display'
+  root 'portfolio#display'
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root "articles#index"
+end
