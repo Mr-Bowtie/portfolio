@@ -23,12 +23,14 @@ section {
     min-height: 100vh;
 }
 
-// .hero-body {
-//     background-image: url("/assets/ruby.jpg");
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     background-position: center;
-// }
+.hero-body {
+    @include tablet{
+        background-image: url("/assets/ruby.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 60%;
+    }
+}
 
 // p {
 //     color: #f2efeb;
