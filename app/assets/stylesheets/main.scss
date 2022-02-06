@@ -1,1 +1,35 @@
+$cyan: #47daff;
+$highlight-1: #ffda47;
+$highlight-2: #ff4791;
+$charcoal: #494c5c;
+$offwhite: #f2efeb;
+$soft-pink: #faadf3;
+$soft-pink-invert: findColorInvert($soft-pink);
+$offwhite-invert: findColorInvert($offwhite);
+$cyan-invert: findColorInvert($cyan);
+$highlight-1-invert: findColorInvert($highlight-1);
+$highlight-2-invert: findColorInvert($highlight-2);
+$charcoal-invert: findColorInvert($charcoal);
+$custom-colors: ("cyan": ($cyan, $cyan-invert), "highlight-1": ($highlight-1, $highlight-1-invert), "highlight-2": ($highlight-2, $highlight-2-invert), "charcoal": ($charcoal, $charcoal-invert), "offwhite": ($offwhite, $offwhite), "soft-pink": ($soft-pink, $soft-pink-invert));
+$text: $offwhite;
+
 @import "bulma";
+
+body {
+    background: #494c5c;
+}
+
+section {
+    min-height: 100vh;
+}
+
+// .hero-body {
+//     background-image: url("/assets/ruby.jpg");
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background-position: center;
+// }
+
+// p {
+//     color: #f2efeb;
+// }
