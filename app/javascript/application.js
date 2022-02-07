@@ -7,6 +7,7 @@ document.addEventListener('turbo:load', () => {
 
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  const $navbarItems = Array.prototype.slice.call(document.querySelectorAll(".navbar-item"), 0)  
 
   // Check if there are any navbar burgers
   if ($navbarBurgers.length > 0) {
@@ -24,7 +25,21 @@ document.addEventListener('turbo:load', () => {
         $target.classList.toggle('is-active');
 
       });
+        // add click event for each option in menu
+        $navbarItems.forEach( ni => {
+            ni.addEventListener("click", () => {
+
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+                
+                // close menu after clicking on menu option
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+            })
+        })
     });
+
   }
 
 });
