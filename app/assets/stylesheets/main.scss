@@ -20,8 +20,20 @@ body {
 }
 
 section {
-    min-height: 100vh; 
+    min-height: 80vh; 
     padding-top: 6em;
+}
+
+#about-container {
+    @include tablet {
+        padding-top: 9em;
+
+    }
+
+}
+
+.container {
+    min-height: inherit;
 }
 
 #hero-background {
@@ -29,7 +41,7 @@ section {
 }
 
 .hero-body {
-    @include tablet{
+    @include tablet {
         background-image: url("/assets/ruby.jpg");
         background-repeat: no-repeat;
         background-size: cover;
