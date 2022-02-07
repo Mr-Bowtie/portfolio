@@ -32,6 +32,9 @@ body {
 //     margin: auto 0px;
 // }
 
+.level-item {
+    text-decoration: underline;
+}
 
 #about-container {
     @include tablet {
