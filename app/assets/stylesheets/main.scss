@@ -20,7 +20,12 @@ body {
 }
 
 section {
-    min-height: 100vh;
+    min-height: 100vh; 
+    padding-top: 6em;
+}
+
+#hero-background {
+    background-image: linear-gradient(to bottom right, #e095d6, #ffc5ff)
 }
 
 .hero-body {
@@ -29,6 +34,7 @@ section {
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50% 60%;
+
     }
 }
 
