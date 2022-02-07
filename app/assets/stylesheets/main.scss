@@ -19,10 +19,19 @@ body {
     background: #494c5c;
 }
 
-section {
-    min-height: 80vh; 
+.section {
+    min-height: 75vh;
     padding-top: 6em;
 }
+
+.container {
+    min-height: inherit;
+}
+
+// .about_body {
+//     margin: auto 0px;
+// }
+
 
 #about-container {
     @include tablet {
@@ -32,8 +41,10 @@ section {
 
 }
 
-.container {
-    min-height: inherit;
+#home {
+    @include mobile {
+        margin-top: 4em;
+    }
 }
 
 #hero-background {
