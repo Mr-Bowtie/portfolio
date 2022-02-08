@@ -13,10 +13,10 @@
     </div>
     <div class="navbar-menu has-background-charcoal" id="nav-buttons">
       <div class="navbar-end">
-        <a href="#home" class="navbar-item has-text-cyan">Home</a>
-        <a href="#about" class="navbar-item has-text-cyan">About</a>
-        <a href="#portfolio" class="navbar-item has-text-cyan">Portfolio</a>
-        <a href="#contact" class="navbar-item has-text-cyan">Contact</a>
+        <a href="#home" class=" is-size-4 navbar-item has-text-cyan">Home</a>
+        <a href="#about" class=" is-size-4 navbar-item has-text-cyan">About</a>
+        <a href="#portfolio" class=" is-size-4 navbar-item has-text-cyan">Portfolio</a>
+        <a href="#contact" class=" is-size-4 navbar-item has-text-cyan">Contact</a>
 
       </div> 
     </div>
@@ -49,21 +49,19 @@
         <h1 data-text="More about me?" class="has-text-highlight-2 title is-1">More about me?</h1>  
       </div>
     </header>
-    <div class="container is-flex is-justify-content-center"  id="about-body-container">
-      <div class="about_body columns is-vcentered">
-        <div class="column is-one-third">
-          <%= image_tag("/assets/ian-headshot.PNG", alt: "Ian Withers jauntily leaning back in a duochrome style reminiscent of Andy Warhol", class: " is-square") %>
-        </div>
-        <div class="body_text column is-two-thirds">
-          <p>When I'm not coding, I'm probably prepping for the next D&D session where I act as a Dungeon Master&mdash; perfect practice for problem solving on the fly. I also enjoy traveling with my wife and spending time with my three dogs.</p>
-        </div>
+    <div class="about_body columns is-vcentered">
+      <div class="column is-one-third">
+        <%= image_tag("/assets/ian-headshot.PNG", alt: "Ian Withers jauntily leaning back in a duochrome style reminiscent of Andy Warhol", class: " is-square") %>
+      </div>
+      <div class="body_text column is-two-thirds">
+        <p class="is-size-4">When I'm not coding, I'm probably prepping for the next D&D session where I act as a Dungeon Master&mdash; perfect practice for problem solving on the fly. I also enjoy traveling with my wife and spending time with my three dogs.</p>
       </div>
     </div>
-    <nav class="level is-mobile ">
-      <a class="title is-4 has-text-cyan is-underlined about-links level-item" href="#">Resume</a>
-      <a class="title is-4 has-text-cyan is-underlined about-links level-item" href="#">LinkedIn</a>
-      <a class="title is-4 has-text-cyan is-underlined about-links level-item" href="#">Github</a>
-      <a class="title is-4 has-text-cyan is-underlined about-links level-item" href="#">Twitter</a>
+    <nav class="level is-centered">
+      <a class="title is-3 has-text-cyan is-underlined about-links level-item" href="#">Resume</a>
+      <a class="title is-3 has-text-cyan is-underlined about-links level-item" href="#">LinkedIn</a>
+      <a id="last-level" class="title is-3 has-text-cyan is-underlined about-links level-item" href="#">Github</a>
+      <%# <a class="title is-3 has-text-cyan is-underlined about-links level-item" href="#">Twitter</a> %>
     </nav>
   </div>
 </section>
