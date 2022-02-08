@@ -1,3 +1,14 @@
+@font-face {
+    font-family: "Explode";
+    src: url("/assets/explode-regular-webfont.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Explode-Shadow";
+    src: url("/assets/explode-shadow-webfont.woff") format("woff");
+}
+
+$family-sans-serif: "Explode", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $cyan: #47daff;
 $highlight-1: #ffda47;
 $highlight-2: #ff4791;
@@ -14,6 +25,24 @@ $custom-colors: ("cyan": ($cyan, $cyan-invert), "highlight-1": ($highlight-1, $h
 $text: $offwhite;
 
 @import "bulma";
+
+h1::after {
+    text-shadow: none;
+    font-family: "Explode"; 
+    color: $highlight-1;
+    content: attr(data-text);
+    position: absolute;
+    top: -0.05em;
+    left: 0;
+    text-shadow: -1px 1px 0 $charcoal, 1px 1px 0 $charcoal, 1px -1px 0 $charcoal, -1px -1px 0 $charcoal;
+}
+
+
+
+h1 {
+    font-family: "Explode-Shadow";
+    position: relative;
+}
 
 body {
     background: #494c5c;
