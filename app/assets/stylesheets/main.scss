@@ -49,7 +49,7 @@ body {
 }
 
 .section {
-    min-height: 75vh;
+    min-height: 85vh;
     padding-top: 6em;
 }
 
@@ -78,21 +78,45 @@ body {
 }
 
 #home {
+    padding: 6em 0rem;
     @include mobile {
         margin-top: 4em;
     }
 }
 
+#hero-text::after {
+    text-shadow: none;
+    font-family: "Explode"; 
+    color: $offwhite;
+    content: attr(data-text);
+    position: absolute;
+    top: -0.05em;
+    left: 0;
+    text-shadow: -1px 1px 0 $charcoal, 1px 1px 0 $charcoal, 1px -1px 0 $charcoal, -1px -1px 0 $charcoal;
+}
+
+
+#hero-text {
+    font-family: "Explode-Shadow";
+    position: relative;
+
+}
+
+#hero-text-container {
+    border: 0.75rem solid $offwhite;
+}
+
 #hero-background {
-    background-image: linear-gradient(to bottom right, #e095d6, #ffc5ff)
+    // background-image: linear-gradient(to bottom right, #e095d6, #ffc5ff)
 }
 
 .hero-body {
+    background-image: url("/assets/geometric-background.png");
+    background-size: contain;
     @include tablet {
-        background-image: url("/assets/ruby.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50% 60%;
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        // background-position: 50% 60%;
 
     }
 }
@@ -105,6 +129,8 @@ h2 {
     margin: 2em 0em;
 
 }
+
+
 
 // p {
 //     color: #f2efeb;
