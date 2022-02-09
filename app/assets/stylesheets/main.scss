@@ -48,6 +48,10 @@ body {
     background: #494c5c;
 }
 
+.navbar {
+    border-bottom: 0.225rem dotted $offwhite;
+}
+
 .section {
     min-height: 85vh;
     padding-top: 6em;
