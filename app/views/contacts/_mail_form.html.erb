@@ -1,0 +1,37 @@
+<%= form_with model: @contact do |f| %>
+ <div class="field">
+    <div class="control">
+      <%= f.label :name, class: "label has-text-offwhite"%>
+      <%= f.text_field :name,  class: "input" %>
+      <p class="error"><%= show_errors(@contact, :name) %></p>
+
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= f.label :email, class: "label has-text-offwhite"%>
+      <%= f.text_field :email,  class: "input" %>
+      <p class="error"><%= show_errors(@contact, :email) %></p>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= f.label :subject, class: "label has-text-offwhite"%>
+      <%= f.text_field :subject,  class: "input" %>
+      <p class="error"><%= show_errors(@contact, :subject) %></p>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= f.label :message, class: "label has-text-offwhite"%>
+      <%= f.text_area :message,  class: "textarea" %>
+    </div>
+  </div>
+  <div class='hidden'>
+    <%= f.label :nickname%>
+    <%= f.text_field :nickname, :hint => 'leave this field blank!' %>
+  </div>
+  <div>
+    <%= f.submit "Send message", class: "button is-cyan" %>
+  </div>
+<% end %>

@@ -99,6 +99,13 @@ body {
     text-shadow: -1px 1px 0 $charcoal, 1px 1px 0 $charcoal, 1px -1px 0 $charcoal, -1px -1px 0 $charcoal;
 }
 
+.hidden {
+    display: none;
+}
+
+.input { 
+    border: none;
+}
 
 #hero-text {
     font-family: "Explode-Shadow";
@@ -123,6 +130,10 @@ body {
         // background-position: 50% 60%;
 
     }
+}
+
+.notification {
+    padding-top: 6em;
 }
 
 h2 { 
