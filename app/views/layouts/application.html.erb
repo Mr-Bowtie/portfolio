@@ -10,7 +10,43 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="has-background-charcoal">
+    <header>
+      <nav class="navbar is-fixed-top is-charcoal">
+        <div class="navbar-brand">
+          <div>
+            <h1 data-text="Ian Withers" class="ml-6 has-text-highlight-2 title is-1">Ian Withers</h1>
+            <h2 class="mb-3 subtitle">Ruby Developer</h2>
+          </div>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="nav-buttons">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="navbar-menu has-background-charcoal" id="nav-buttons">
+          <div class="navbar-end">
+            <a href="/#home" class=" is-size-4 navbar-item has-text-cyan">Home</a>
+            <a href="/#about" class=" is-size-4 navbar-item has-text-cyan">About</a>
+            <a href="/#portfolio" class=" is-size-4 navbar-item has-text-cyan">Portfolio</a>
+            <%# <a href="#contact" class=" is-size-4 navbar-item has-text-cyan">Contact</a> %>
+            <%= link_to "Contact Me", new_contact_path, class: "is-size-4 navbar-item has-text-cyan"%>
+
+          </div> 
+        </div>
+      </nav>
+    </header>
+
+    <% if flash[:notice]  %>
+      <div class="notification is-highlight-1 global-notification">
+        <p class="notice"><%= flash[:notice]%></p> 
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-highlight-2 global-notification">
+        <p class="alert"><%= flash[:alert] %></p>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
