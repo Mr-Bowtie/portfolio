@@ -165,7 +165,13 @@ h2 {
 
 }
 
+.input, .textarea {
+    font-family: sans-serif
+}
 
+.error { 
+    color: $highlight-2;
+}
 
 // p {
 //     color: #f2efeb;
