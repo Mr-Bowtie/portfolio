@@ -25,6 +25,7 @@ $custom-colors: ("cyan": ($cyan, $cyan-invert), "highlight-1": ($highlight-1, $h
 $text: $offwhite;
 $link: $cyan;
 $link-hover: $highlight-1;
+$button-hover-color: $offwhite;
 
 @import "bulma";
 
