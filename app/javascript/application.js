@@ -2,6 +2,8 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+const notification = document.querySelector(".notification")
+
 // mobile burger menu toggle
 document.addEventListener('turbo:load', () => {
 
@@ -42,4 +44,14 @@ document.addEventListener('turbo:load', () => {
 
   }
 
+hideNotice();
 });
+
+
+function hideNotice() {
+  setTimeout(function() {
+    document.querySelector('.notification').style.display = "none";
+  }, 5000);
+}
+
+// hideNotice();

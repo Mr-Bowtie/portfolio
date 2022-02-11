@@ -38,12 +38,12 @@
     </header>
 
     <% if flash[:notice]  %>
-      <div class="notification is-highlight-1 global-notification">
-        <p class="notice"><%= flash[:notice]%></p> 
+      <div class="notification is-highlight-1 ">
+        <p class="notice has-text-charcoal"><%= flash[:notice]%></p> 
       </div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="notification is-highlight-2 global-notification">
+      <div class="notification is-highlight-2 ">
         <p class="alert"><%= flash[:alert] %></p>
       </div>
     <% end %>
