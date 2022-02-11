@@ -23,6 +23,8 @@ $highlight-2-invert: findColorInvert($highlight-2);
 $charcoal-invert: findColorInvert($charcoal);
 $custom-colors: ("cyan": ($cyan, $cyan-invert), "highlight-1": ($highlight-1, $highlight-1-invert), "highlight-2": ($highlight-2, $highlight-2-invert), "charcoal": ($charcoal, $charcoal-invert), "offwhite": ($offwhite, $offwhite), "soft-pink": ($soft-pink, $soft-pink-invert));
 $text: $offwhite;
+$link: $cyan;
+$link-hover: $highlight-1;
 
 @import "bulma";
 
@@ -89,15 +91,22 @@ body {
     }
 }
 
-#hero-text::after {
+.hero-text {
+    font-family: "Explode-Shadow";
+    position: relative;
+
+}
+
+.hero-text::after {
     text-shadow: none;
     font-family: "Explode"; 
     color: $offwhite;
     content: attr(data-text);
     position: absolute;
     top: -0.05em;
-    left: 0;
+    left: -0.03em;
     text-shadow: -1px 1px 0 $charcoal, 1px 1px 0 $charcoal, 1px -1px 0 $charcoal, -1px -1px 0 $charcoal;
+    width: 100%;
 }
 
 .hidden {
@@ -108,11 +117,6 @@ body {
     border: none;
 }
 
-#hero-text {
-    font-family: "Explode-Shadow";
-    position: relative;
-
-}
 
 #hero-text-container {
     border: 0.75rem solid $offwhite;
