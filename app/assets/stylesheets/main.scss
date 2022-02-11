@@ -64,6 +64,12 @@ body {
     min-height: inherit;
 }
 
+.title.is-1 {
+    @include mobile {
+        font-size: 2.5rem;
+    }
+}
+
 // .about_body {
 //     margin: auto 0px;
 // }
@@ -78,6 +84,10 @@ body {
 
     }
 
+}
+
+.title {
+    color: $cyan
 }
 
 #last-level {
