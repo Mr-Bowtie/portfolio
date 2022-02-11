@@ -56,8 +56,8 @@ body {
 }
 
 .section {
-    min-height: 80vh;
-    padding-top: 6em;
+    min-height: 70vh;
+    padding-top: 7rem;
 }
 
 .container {
@@ -148,7 +148,12 @@ body {
 }
 
 .notification {
-    padding-top: 6em;
+    padding-top: 7rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+
 }
 
 h2 { 
