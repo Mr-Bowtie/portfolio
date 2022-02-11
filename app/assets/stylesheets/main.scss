@@ -132,19 +132,10 @@ body {
     border: 0.75rem solid $offwhite;
 }
 
-#hero-background {
-    // background-image: linear-gradient(to bottom right, #e095d6, #ffc5ff)
-}
 
 .hero-body {
     background-image: url("/assets/geometric-background.png");
     background-size: contain;
-    @include tablet {
-        // background-repeat: no-repeat;
-        // background-size: cover;
-        // background-position: 50% 60%;
-
-    }
 }
 
 .notification {
@@ -173,6 +164,3 @@ h2 {
     color: $highlight-2;
 }
 
-// p {
-//     color: #f2efeb;
-// }
