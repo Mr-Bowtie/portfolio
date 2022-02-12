@@ -57,8 +57,9 @@ body {
 }
 
 .section {
-    // min-height: 60vh;
-    padding-top: 7rem;
+    // min-height: 80vh;
+    padding-top: 7.5rem;
+    padding-bottom: 0;
 }
 
 .container {
@@ -67,13 +68,27 @@ body {
 
 .title.is-1 {
     @include mobile {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 }
 
-// .about_body {
-//     margin: auto 0px;
+// .form-div {
+//     margin-top: 1.5rem;
+//     @include tablet {
+//         margin-top: 5rem;
+//     }
 // }
+
+.form-header {
+    margin-bottom: 1rem;
+    @include tablet {
+        margin: 3rem 0;
+    }
+}
+
+.about_body {
+    padding: 4rem 0;
+}
 
 .is-underlined {
     text-decoration: underline;
@@ -102,6 +117,13 @@ body {
     }
 }
 
+.hero {
+    height: 95vh;
+    @include mobile {
+        height: 95vh;
+    }
+}
+
 .hero-text {
     font-family: "Explode-Shadow";
     position: relative;
@@ -120,6 +142,19 @@ body {
     width: 100%;
 }
 
+#hero-text-container {
+    border: 0.75rem solid $offwhite;
+}
+
+
+.hero-body {
+    background-image: url("/assets/geometric-background.png");
+    background-size: contain;
+    @include mobile {
+        padding-top: 8rem;
+    }
+   }
+
 .hidden {
     display: none;
 }
@@ -129,19 +164,9 @@ body {
 }
 
 
-#hero-text-container {
-    border: 0.75rem solid $offwhite;
-}
-
-
-.hero-body {
-    background-image: url("/assets/geometric-background.png");
-    background-size: contain;
-    padding: 12rem 1.5rem;
-    @include tablet {
-        padding: 15rem 1.5rem;
-    }
-}
+// .hero-background {
+//     height:inherit;
+// }
 
 .notification {
     padding-top: 7rem;
