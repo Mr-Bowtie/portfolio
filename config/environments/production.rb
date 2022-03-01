@@ -3,6 +3,17 @@ require 'active_support/core_ext/integer/time'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  #mailgun config
+  ActionMailer::Base.smtp_settings = {
+    :port => ENV['MAILGUN_SMTP_PORT'],
+    :address => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name => ENV['MAILGUN_SMTP_LOGIN'],
+    :password => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain => 'itnw-portfolio.herokuapp.com', # UPDATE THIS VALUE WITH YOUR OWN APP
+    :authentication => :plain,
+  }
+  ActionMailer::Base.delivery_method = :smtp
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -90,15 +101,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  #mailgun config
-  ActionMailer::Base.smtp_settings = {
-    :port => ENV['MAILGUN_SMTP_PORT'],
-    :address => ENV['MAILGUN_SMTP_SERVER'],
-    :user_name => ENV['MAILGUN_SMTP_LOGIN'],
-    :password => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain => 'itnw-portfolio.herokuapp.com', # UPDATE THIS VALUE WITH YOUR OWN APP
-    :authentication => :plain,
-  }
-  ActionMailer::Base.delivery_method = :smtp
 end
