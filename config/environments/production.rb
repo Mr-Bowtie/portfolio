@@ -5,11 +5,11 @@ Rails.application.configure do
 
   #mailgun config
   ActionMailer::Base.smtp_settings = {
-    :port => ENV['MAILGUN_SMTP_PORT'],
-    :address => ENV['MAILGUN_SMTP_SERVER'],
-    :user_name => ENV['MAILGUN_SMTP_LOGIN'],
-    :password => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain => 'itnw-portfolio.herokuapp.com', # UPDATE THIS VALUE WITH YOUR OWN APP
+    :port => ENV['SENDGRID_SMTP_PORT'],
+    :address => ENV['SENDGRID_SERVER'],
+    :user_name => ENV['SENDGRID_LOGIN'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => 'ianwithers.dev', # UPDATE THIS VALUE WITH YOUR OWN APP
     :authentication => :plain,
   }
   ActionMailer::Base.delivery_method = :smtp
