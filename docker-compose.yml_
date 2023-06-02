@@ -3,11 +3,10 @@ services:
   # is going to run. The key can be anything. Note that this
   # key will be the name of this image on the network that docker-compose
   # creates, so make it explicit and obvious.
-  portfolio:
-    build:
-      context: .
-      dockerfile: ./Dockerfile.backup
-    image: ian_portfolio:latest
+  sustainable-rails-docker:
+    image: 
+    build: .
+
     # This says that our app should not start up until the DB and Redis instances
     # are up.  Ideally we'd use "service_healthy" which says to wait for the services to
     # pass a health check, but neither Postgres nor Redis docker images configure one.
@@ -28,8 +27,8 @@ services:
     # localhost for LOCAL_PORT will be served
     # by whatever is running in the container on EXPOSE
     ports:
-      - "9998:3000"
-      - "21:22"
+      - "9999:3000"
+      - "22:22"
 
     # This maps the WORKDIR directory inside the Docker
     # container to our hosts directory, VOLUME_SOURCE
@@ -73,8 +72,7 @@ services:
     # titled "Environment Variables", you
     # can see the default values for
     # connecting to postgres.
-    image: postgres:15
-    platform: linux/amd64
+    image: amd64/postgres:15
     # We don't want to pull this big image every time
     pull_policy: "missing"
     # In Postgres 15, there is no default value for the password.
@@ -87,8 +85,7 @@ services:
   # until we start talking about background jobs.  Like the
   # Postgres block above, this starts up a Redis server using 6.x.x
   redis:
-    image: redis:6
-    platform: linux/amd64
+    image: amd64/redis:6
     # We don't want to pull this big image every time
     pull_policy: "missing"
 # vim: ft=yaml nospell
