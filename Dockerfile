@@ -1,96 +1,70 @@
-# This is generated, please edit
-# Dockerfile.template if you want to
-# make changes. Also note that some
-# values come from bin/vars, so check that out as well
-# This is using Docker's official Ruby base image, for
-# arm64v8, which is Apple Silicon. This image is the one
-# used for Rails by default and is maintained by Docker.
-#
-# You can see how the image is made by going here:
-#
-# https://github.com/docker-library/ruby/blob/9fd589661dd0e12b082336e9c6f731196fe39ba8/3.1/bullseye/Dockerfile
-#
-# To determine the OS, you must navigate backwards using the FROM directive from
-# that Dockerfile. You will find your way to Debian's repo here:
-#
-# https://github.com/debuerreotype/docker-debian-artifacts/blob/64b13cf5860ac15c1d909abd7239516db9748fea/bullseye/Dockerfile
-#
-# Thus, this is a Debian-based build.
-FROM arm64v8/ruby:3.1
+# syntax = docker/dockerfile:1
 
-# Before we start, you'll note there are a lot of RUN directives. Each of these creates a layer that is cached by
-# Docker.  Thus, if you change the second RUN directive and rebuild the image, the first RUN directive doesn't have
-# to be re-executed - the cached layer is used and the second directive is executed from there.
-#
-# Each RUN directive in here is chosen to allow the image to evolve over time while minimizing the amount of
-# re-building that has to be done.
-#
-# Thus, the first few things set up stuff that is unlikely to change frequently, such as OS-level tools and Node.
-# Later directives do stuff like Chrome, which will change a lot and is also unstable.
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.1.3
+FROM ruby:$RUBY_VERSION-slim as base
 
-# This tells our apt-get calls to not ask for input, but does not releive us of the 
-# great responsibility of using -y to all commands to indicate that yes, our invocation
-# of the command to install a package means we do, in fact, want that package installed.
-ENV DEBIAN_FRONTEND noninteractive
+LABEL fly_launch_runtime="rails"
 
-# This is copied from the Rails devcontainer and installs base packages we will need for other things we'll
-# install.
+# Rails app lives here
+WORKDIR /rails
+
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_DEPLOYMENT="1"
+
+# Update gems and bundler
+RUN gem update --system --no-document && \
+    gem install -N bundler
+
+
+# Throw-away build stage to reduce size of final image
+FROM base as build
+
+# Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install -y \
-                    build-essential \
-                    curl \
-                    git \
-                    libvips \
-                    procps \
-                    rsync \
-                    wget
+    apt-get install --no-install-recommends -y build-essential libpq-dev
 
-# This installs the latest supported verison of Node. It should be
-# an even numbered version unless you are doing Node development.
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g yarn
+# Install application gems
+COPY --link Gemfile Gemfile.lock ./
+RUN bundle install && \
+    bundle exec bootsnap precompile --gemfile && \
+    rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
-# Now install the Postgres client, which is needed for the Postgres gem.  We don't need
-# the entire Postgres server in here.
-# These instructions are from https://www.postgresql.org/download/linux/ubuntu/
-# This is needed because this version of Debian does not have Postgres 15 and we want to be on 
-# the latest version.
-RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
-		wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-		apt-get update && \
-		apt-get -y install postgresql-client-15
+# Copy application code
+COPY --link . .
 
-# Next, we install chromium and chromium-driver to facilitate Rails system tests.
-# There is no Chrome for ARM linux distributions, so we have to use Chromium.
-# Note that although Apple Silicon is capable of emulating AMD instructions, Chrome
-# requires system calls that are not emulated. It is unclear if Apple, Docker, or Google
-# are the ones who could fix this, but none of them are at the moment.
-RUN apt-get -y install chromium chromium-driver
+# Precompile bootsnap code for faster boot times
+RUN bundle exec bootsnap precompile app/ lib/
 
-# Now, we set up RubyGems to avoid building documentation. We don't need the docs
-# inside this image and it slows down gem installation to have them.
-# We also install the latest bundler as well as Rails.  Lastly, to help debug stuff inside
-# the container, I need vi mode on the command line and vim to be installed.  These can be 
-# omitted and aren't needed by the Rails toolchain.
-# Install fish for a nice terminal
-RUN echo "gem: --no-document" >> ~/.gemrc && \
-    gem install bundler && \
-    gem install rails --version ">= 7.0.0" && \
-    echo "set -o vi" >> ~/.bashrc && \
-    apt-get -y install vim && \
-    apt-get -y install fish
+# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
-# This entrypoint produces a nice help message and waits around for you to do
-# something with the container.
-COPY ./docker-entrypoint.sh /root
 
-# This says to expose the given port to the outside world.
+# Final stage for app image
+FROM base
+
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y postgresql-client && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Run and own the application files as a non-root user for security
+RUN useradd rails --home /rails --shell /bin/bash
+USER rails:rails
+
+# Copy built artifacts: gems, application
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build --chown=rails:rails /rails /rails
+
+# Deployment options
+ENV RAILS_LOG_TO_STDOUT="1" \
+    RAILS_SERVE_STATIC_FILES="true"
+
+# Entrypoint prepares the database.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-
-# Although WORKDIR specifies a base directory where COPY, ADD, RUN, etc. commands run from,
-# we use it here as a default directory where docker run AKA bin/exec commands will
-# be run from. Essentially if you bin/exec bash, this is the directory you will end up in.
-# It is also where docker-compose.yml will map your local directory.
-WORKDIR /root/work
-# vim: ft=Dockerfile
+CMD ["./bin/rails", "server"]
