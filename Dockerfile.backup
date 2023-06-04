@@ -16,7 +16,7 @@
 # https://github.com/debuerreotype/docker-debian-artifacts/blob/64b13cf5860ac15c1d909abd7239516db9748fea/bullseye/Dockerfile
 #
 # Thus, this is a Debian-based build.
-FROM amd64/ruby:3.1
+FROM amd64/ruby:3.1.3
 
 # Before we start, you'll note there are a lot of RUN directives. Each of these creates a layer that is cached by
 # Docker.  Thus, if you change the second RUN directive and rebuild the image, the first RUN directive doesn't have
