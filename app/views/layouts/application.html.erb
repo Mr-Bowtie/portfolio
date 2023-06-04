@@ -15,7 +15,7 @@
       <nav class="navbar is-fixed-top is-charcoal">
         <div class="navbar-brand">
           <div>
-            <%= link_to portfolio_display_path do %>
+            <%= link_to home_path do %>
             <h1 data-text="Ian Withers" class="ml-6 has-text-highlight-2 title is-1">Ian Withers</h1>
             <h2 class="mb-3 subtitle">Ruby Developer</h2>
           <% end %>
@@ -28,9 +28,9 @@
         </div>
         <div class="navbar-menu has-background-charcoal" id="nav-buttons">
           <div class="navbar-end">
-            <a href="/#home" class=" is-size-4 navbar-item has-text-cyan">Home</a>
-            <a href="/#about" class=" is-size-4 navbar-item has-text-cyan">About</a>
-            <a href="/#portfolio" class=" is-size-4 navbar-item has-text-cyan">Portfolio</a>
+            <%= link_to "Home", home_path, class: "is-size-4 navbar-item has-text-cyan"%>
+            <%= link_to "About", about_path, class: "is-size-4 navbar-item has-text-cyan"%>
+            <%= link_to "Portfolio", portfolio_path, class: "is-size-4 navbar-item has-text-cyan"%>
             <%= link_to "Contact Me", new_contact_path, class: "is-size-4 navbar-item has-text-cyan"%>
 
           </div> 

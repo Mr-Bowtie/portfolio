@@ -1,4 +1,7 @@
 class PortfolioController < ApplicationController
-  def display
-  end
+  def home; end
+
+  def about; end
+
+  def portfolio; end
 end
