@@ -111,17 +111,16 @@ body {
 }
 
 #home {
-    padding: 3em 0rem;
+    padding-top: 0em;
+    padding-left: 0em;
+    padding-right: 0em;
     @include mobile {
        // margin-top: 4em;
     }
 }
 
 .hero {
-    height: 95vh;
-    @include mobile {
-        height: 95vh;
-    }
+    height: 100vh;
 }
 
 .hero-text {
@@ -200,4 +199,8 @@ h2 {
 
 #logo {
   margin-top: .8rem;
+}
+
+.section_header {
+  margin-top: 3rem;
 }
