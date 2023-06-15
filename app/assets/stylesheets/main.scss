@@ -57,13 +57,14 @@ body {
 }
 
 .section {
-    // min-height: 80vh;
+    min-height: 85vh;
     padding-top: 7.5rem;
     padding-bottom: 0;
 }
 
 .container {
-    min-height: inherit;
+    // min-height: inherit;
+    height: 100%;
 }
 
 .title.is-1 {
@@ -141,7 +142,7 @@ body {
     width: 100%;
 }
 
-#hero-text-container {
+.central-content-border {
     border: 0.75rem solid $offwhite;
 }
 
@@ -204,3 +205,18 @@ h2 {
 .section_header {
   margin-top: 3rem;
 }
+
+#contact-container {
+  background-image: url("/assets/form-geometric-background.png");
+  background-size: contain;
+  height: 100vh;
+  @include mobile {
+    // background-image: none;
+  }
+}
+
+#form-div {
+  width: 100%;
+}
+
+
