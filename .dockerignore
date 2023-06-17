@@ -12,6 +12,7 @@
 
 # Ignore all environment files.
 /.env*
+!/.env.development
 !/.env.example
 
 # Ignore all logfiles and tempfiles.

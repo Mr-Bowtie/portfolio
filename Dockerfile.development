@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:latest
 # This is generated, please edit
 # Dockerfile.template if you want to
 # make changes. Also note that some
@@ -17,6 +18,7 @@
 #
 # Thus, this is a Debian-based build.
 FROM amd64/ruby:3.1.3
+
 
 # Before we start, you'll note there are a lot of RUN directives. Each of these creates a layer that is cached by
 # Docker.  Thus, if you change the second RUN directive and rebuild the image, the first RUN directive doesn't have
@@ -74,19 +76,22 @@ RUN apt-get -y install chromium chromium-driver
 # the container, I need vi mode on the command line and vim to be installed.  These can be 
 # omitted and aren't needed by the Rails toolchain.
 # Install fish for a nice terminal
+COPY --link Gemfile Gemfile.lock ./
 RUN echo "gem: --no-document" >> ~/.gemrc && \
+    gem update --system && \
     gem install bundler && \
-    gem install rails --version ">= 7.0.0" && \
-    echo "set -o vi" >> ~/.bashrc && \
-    apt-get -y install vim && \
-    apt-get -y install fish
+    bundle check || bundle install
+
 
 # This entrypoint produces a nice help message and waits around for you to do
 # something with the container.
 COPY ./docker-entrypoint.sh /root
+ENTRYPOINT ["/root/docker-entrypoint.sh"]
+
 
 # This says to expose the given port to the outside world.
 EXPOSE 3000
+# CMD ["./bin/rails", "s", "-b", "0.0.0.0"]
 
 # Although WORKDIR specifies a base directory where COPY, ADD, RUN, etc. commands run from,
 # we use it here as a default directory where docker run AKA bin/exec commands will
