@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+
+echo "starting docker compose stack"
+set RAILS_MASTER_KEY (cat ../config/master.key) docker compose up $argv[1]
