@@ -57,13 +57,14 @@ body {
 }
 
 .section {
-    // min-height: 80vh;
+    min-height: 85vh;
     padding-top: 7.5rem;
     padding-bottom: 0;
 }
 
 .container {
-    min-height: inherit;
+    // min-height: inherit;
+    height: 100%;
 }
 
 .title.is-1 {
@@ -111,17 +112,16 @@ body {
 }
 
 #home {
-    padding: 3em 0rem;
+    padding-top: 0em;
+    padding-left: 0em;
+    padding-right: 0em;
     @include mobile {
        // margin-top: 4em;
     }
 }
 
 .hero {
-    height: 95vh;
-    @include mobile {
-        height: 95vh;
-    }
+    height: 100vh;
 }
 
 .hero-text {
@@ -142,7 +142,7 @@ body {
     width: 100%;
 }
 
-#hero-text-container {
+.central-content-border {
     border: 0.75rem solid $offwhite;
 }
 
@@ -197,3 +197,26 @@ h2 {
 .footer {
     background-color: $charcoal;
 }
+
+#logo {
+  margin-top: .8rem;
+}
+
+.section_header {
+  margin-top: 3rem;
+}
+
+#contact-container {
+  background-image: url("/assets/form-geometric-background.png");
+  background-size: contain;
+  height: 100vh;
+  @include mobile {
+    // background-image: none;
+  }
+}
+
+#form-div {
+  width: 100%;
+}
+
+

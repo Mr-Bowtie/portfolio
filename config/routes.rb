@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'portfolio/display'
-  root 'portfolio#display'
-  resources :contacts, only: [:new, :create]
+  get '/home', to: 'portfolio#home'
+  get '/about', to: 'portfolio#about'
+  get '/portfolio', to: 'portfolio#portfolio'
+  root 'portfolio#home'
+  resources :contacts, only: %i[new create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
