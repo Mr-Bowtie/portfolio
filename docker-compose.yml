@@ -4,6 +4,9 @@ services:
   # key will be the name of this image on the network that docker-compose
   # creates, so make it explicit and obvious.
   portfolio:
+    # tty and stdin_open allow attaching and interacting with a running process, required for interacting with the pry console for debugging
+    tty: true
+    stdin_open: true
     build:
       context: .
       dockerfile: ./Dockerfile.backup
