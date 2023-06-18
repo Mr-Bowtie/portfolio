@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   rspec:
+    runs-on: ubuntu-latest
     steps:
       - name: Run tests
         run: bundle exec rspec spec -f j -o tmp/rspec_results.json -f p
