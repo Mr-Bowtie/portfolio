@@ -59,6 +59,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Brakeman
-        uses: GaboFDC/brakeman-linter-action@v1.1.0
-        env: 
+        uses: nhattan/brakeman-linter-action@v2.0.0
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
