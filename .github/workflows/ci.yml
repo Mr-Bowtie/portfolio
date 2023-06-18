@@ -5,6 +5,20 @@ on: [push]
 jobs:
   rspec:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env: 
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: portfolio_test
+
+    env:
+      RAILS_ENV: test
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,12 +33,17 @@ jobs:
           gem install bundler
           bundle install --without development
 
+      - name: Setup database
+        env:
+          PGHOST: localhost
+        run: bin/rails db:prepare
+
       - name: Run tests
         run: bundle exec rspec spec -f j -o tmp/rspec_results.json -f p
 
       - name: RSpec Report
         uses: SonicGarden/rspec-report-action@v2
-        with: 
+        with:
           token: ${{ secrets.GITHUB_TOKEN }}
           json-path: tmp/rspec_results.json
         if: always()
