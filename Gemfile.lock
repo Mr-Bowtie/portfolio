@@ -346,7 +346,7 @@ DEPENDENCIES
   listen (~> 3.3)
   mail_form
   normalize-rails
-  pg
+  pg (~> 1.1)
   puma (~> 5.0)
   rack-livereload
   rack-mini-profiler (~> 2.0)
