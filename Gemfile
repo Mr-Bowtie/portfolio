@@ -50,7 +50,9 @@ gem 'sassc-rails'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'brakeman'
 gem 'bulma-rails', '~> 0.9.2'
+gem 'bundler-audit'
 gem 'devise', '~> 4.8'
 gem 'font-awesome-rails'
 gem 'mail_form'
@@ -81,8 +83,10 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+gem 'dockerfile-rails', '>= 1.2', group: :development
