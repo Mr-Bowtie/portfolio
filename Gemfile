@@ -87,6 +87,7 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'rails-controller-testing'
 end
 
 gem 'dockerfile-rails', '>= 1.2', group: :development
