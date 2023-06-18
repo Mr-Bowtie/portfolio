@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     @contact.request = request
     begin
       if @contact.deliver
-        redirect_to portfolio_display_path, notice: 'Message sent!'
+        redirect_to portfolio_path, notice: 'Message sent!'
       else
         flash.alert = 'Invalid form'
         render :new, status: :unprocessable_entity
