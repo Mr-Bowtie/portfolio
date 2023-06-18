@@ -1,0 +1,88 @@
+name: Tests & Checks
+
+on: [push]
+
+jobs:
+  audit:
+    name: "Run tests and audits"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.x
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+          yarn install
+
+      - name: Run bin/ci script
+        run: |
+          ./bin/ci
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: tmp/rspec_results.txt
+
+      - name: Upload Brakeman Output
+        uses: actions/upload-artifact@v2
+        with:
+          name: brakeman-output
+          path: tmp/brakeman.html
+      
+      - name: Yarn audit
+        uses: pragatheeswarans/yarn-audit-action@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          label: 'audit issues'
+      
+      - name: Bundler Audit
+        uses: andrewmcodes/bundler-audit-action@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-results:
+    name:  "Publish test result"
+    needs: audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download RSpec Test Results
+        uses: actions/download-artifact@v2
+        with:
+          name: rspec-results
+          path: tmp/rspec_results.json
+
+      - name: Download Brakeman Report
+        uses: actions/download-artifact@v2
+        with:
+          name: brakeman-report
+          path: tmp/brakeman.html
+
+      - name: Brakeman report
+        uses: devmasx/brakeman-linter-action@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPORT_PATH: tmp/brakeman.html
+
+      - name: RSpec Report
+        uses: SonicGarden/rspec-report-action@v2
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          json-path: tmp/rspec_results.json
+        if: always()
