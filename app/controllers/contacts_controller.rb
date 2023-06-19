@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
     rescue Net::SMTPFatalError
       flash.alert = 'Mail Server Error: try again later'
       render :new, status: :unprocessable_entity
-    rescue => e
+    rescue RuntimeError => e
       flash.alert = "Unexpected Error : #{e} "
       render :new, status: :unprocessable_entity
     end
