@@ -47,6 +47,8 @@ jobs:
           json-path: tmp/rspec_results.json
         if: always()
 
+        # TODO: I might think about adding a rubocop action or some kind of style linter of some ilk
+
   yarn-audit:
     runs-on: ubuntu-latest
     steps:
