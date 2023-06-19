@@ -5,6 +5,8 @@ set -e
 # use to start container with out executing any commands immediately, useful for debugging
 # sleep infinity
 
+bundle check || bundle install
+
 # server isnt shutting down nicely and managing this file lock, so Im manually doing it for now
 file_path="./tmp/pids/server.pid"  # Replace with the actual path to your file
 
