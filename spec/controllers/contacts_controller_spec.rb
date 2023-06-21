@@ -13,13 +13,13 @@ RSpec.describe ContactsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:valid_params) { { contact: { name: 'John Doe', email: 'john@example.com', message: 'Hello' } } }
+    let(:valid_params) { { contact: { name: 'John Doe', email: 'john@example.com', message: 'Hello', subject: 'Test' } } }
     let(:invalid_params) { { contact: { name: '', email: '', message: '' } } }
 
     context 'with valid parameters' do
       it 'redirects to the portfolio display path with a notice' do
         post :create, params: valid_params
-        expect(response).to redirect_to(portfolio_path)
+        expect(response).to redirect_to(home_path)
         expect(flash[:notice]).to eq('Message sent!')
       end
     end
@@ -35,7 +35,8 @@ RSpec.describe ContactsController, type: :controller do
 
     context 'when a Net::SMTPFatalError occurs' do
       before do
-        allow_any_instance_of(Contact).to receive(:deliver).and_raise(Net::SMTPFatalError)
+        smtp_fatal = Net::SMTPFatalError.new(valid_params)
+        allow_any_instance_of(Contact).to receive(:deliver).and_raise(smtp_fatal)
       end
 
       it 'renders the new template with a mail server error message' do
