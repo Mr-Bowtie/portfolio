@@ -10,7 +10,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.development
-    image: ian_portfolio:latest
+    image: $PROJECT_NAME:latest
     environment:
       RAILS_MASTER_KEY: $RAILS_MASTER_KEY
       RAILS_ENV: $RAILS_ENV
