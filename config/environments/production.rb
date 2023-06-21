@@ -3,16 +3,17 @@ require 'active_support/core_ext/integer/time'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  #mailgun config
-  config.action_mailer.smtp_settings = {
-    :port => ENV['SENDGRID_SMTP_PORT'],
-    :address => ENV['SENDGRID_SMTP_SERVER'],
-    :user_name => ENV['SENDGRID_SMTP_LOGIN'],
-    :password => ENV['SENDGRID_SMTP_PASSWORD'],
-    :domain => 'ianwithers.dev', # UPDATE THIS VALUE WITH YOUR OWN APP
-    :authentication => :plain,
-  }
+  # gmail smtp config
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'ianwithers.dev',
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true

@@ -11,8 +11,8 @@ gem 'sprockets-rails'
 
 gem 'dotenv-rails'
 
-# Use sqlite3 as the database for Active Record
-gem 'pg'
+# Use pg as the database for Active Record
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
@@ -50,8 +50,9 @@ gem 'sassc-rails'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'brakeman'
 gem 'bulma-rails', '~> 0.9.2'
-gem 'devise', '~> 4.8'
+gem 'bundler-audit'
 gem 'font-awesome-rails'
 gem 'mail_form'
 gem 'normalize-rails'
@@ -60,6 +61,7 @@ gem 'simple_form', '~> 5.1'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -81,8 +83,13 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'rails-controller-testing'
 end
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+gem 'dockerfile-rails', '>= 1.2', group: :development
+
+gem "pry", "~> 0.14.2"

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+echo "[ bin/ci ] Running unit tests"
+bundle exec rspec spec -f j -o tmp/rspec_results.json -f p
+
+echo "[ bin/ci ] Analyzing code for security vulnerabilities."
+echo "[ bin/ci ] Output will be in tmp/brakeman.html, which"
+echo "[ bin/ci ] can be opened in your browser."
+bundle exec brakeman -q -o tmp/brakeman.html
+
+echo "[ bin/ci ] Done"

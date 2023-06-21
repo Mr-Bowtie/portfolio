@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     @contact.request = request
     begin
       if @contact.deliver
-        redirect_to portfolio_display_path, notice: 'Message sent!'
+        redirect_to home_path, notice: 'Message sent!'
       else
         flash.alert = 'Invalid form'
         render :new, status: :unprocessable_entity
@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
     rescue Net::SMTPFatalError
       flash.alert = 'Mail Server Error: try again later'
       render :new, status: :unprocessable_entity
-    rescue => e
+    rescue RuntimeError => e
       flash.alert = "Unexpected Error : #{e} "
       render :new, status: :unprocessable_entity
     end

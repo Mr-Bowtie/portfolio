@@ -1,24 +1,13 @@
-# README
+# Running Locally
+1. make sure `config/master.key` is created and set. secret can be found in Bitwarden vault
+2. copy `.env.example` to `.env` and set the values accordingly
+3. start docker compose with the one of the bin commands 
+  - `start-dev`
+  - `start-test`
+  - both of these run the server on container startup
+4. in a separate process, run `bin/exec bash` to attach a terminal to the running docker container
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Prod Env 
+- RAILS_MASTER_KEY
+- GMAIL_USERNAME # used for sending mail with google smtp servers
+- GMAIL_PASSWORD # this is a unique app password
