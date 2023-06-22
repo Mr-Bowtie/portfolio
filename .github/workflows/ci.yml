@@ -47,6 +47,9 @@ jobs:
           json-path: tmp/rspec_results.json
         if: always()
 
+      - name: Rubocop linting
+        run: bundle exec rubocop --parallel
+
   code-audits:
     runs-on: ubuntu-latest
     env:
@@ -61,9 +64,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           label: 'audit issues'
 
-      - name: Rubocop
-        uses: gimenete/rubocop-action@1.0
-      
       - name: Brakeman
         uses: nhattan/brakeman-linter-action@v2.0.0
 
