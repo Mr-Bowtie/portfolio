@@ -11,3 +11,7 @@
 - RAILS_MASTER_KEY
 - GMAIL_USERNAME # used for sending mail with google smtp servers
 - GMAIL_PASSWORD # this is a unique app password
+
+# Deploying
+- FLY_API_TOKEN should be set in the github repository settings
+
