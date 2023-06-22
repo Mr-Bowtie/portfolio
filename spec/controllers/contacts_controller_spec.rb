@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe ContactsController, type: :controller do
   describe 'GET #new' do
@@ -13,7 +15,9 @@ RSpec.describe ContactsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:valid_params) { { contact: { name: 'John Doe', email: 'john@example.com', message: 'Hello', subject: 'Test' } } }
+    let(:valid_params) do
+      { contact: { name: 'John Doe', email: 'john@example.com', message: 'Hello', subject: 'Test' } }
+    end
     let(:invalid_params) { { contact: { name: '', email: '', message: '' } } }
 
     context 'with valid parameters' do
