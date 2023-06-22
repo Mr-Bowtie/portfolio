@@ -22,4 +22,7 @@ echo "[ bin/ci ] Analyzing Node modules"
 echo "[ bin/ci ] for security vulnerabilities"
 yarn audit
 
+echo "[ bin/ci ] Linting code with Rubocop"
+bundle exec rubocop
+
 echo "[ bin/ci ] Done"

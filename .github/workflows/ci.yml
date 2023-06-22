@@ -47,10 +47,10 @@ jobs:
           json-path: tmp/rspec_results.json
         if: always()
 
-        # TODO: I might think about adding a rubocop action or some kind of style linter of some ilk
-
-  yarn-audit:
+  code-audits:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -61,24 +61,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           label: 'audit issues'
 
-  bundler-audit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Rubocop
+        uses: gimenete/rubocop-action@1.0
+      
+      - name: Brakeman
+        uses: nhattan/brakeman-linter-action@v2.0.0
 
       - name: Bundler Audit
         uses: andrewmcodes/bundler-audit-action@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  brakeman-report:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Brakeman
-        uses: nhattan/brakeman-linter-action@v2.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
