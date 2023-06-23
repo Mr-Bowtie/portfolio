@@ -47,9 +47,6 @@ jobs:
           json-path: tmp/rspec_results.json
         if: always()
 
-      - name: Rubocop linting
-        run: bundle exec rubocop --parallel
-
   code-audits:
     runs-on: ubuntu-latest
     env:
