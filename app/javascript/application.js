@@ -55,3 +55,5 @@ function hideNotice() {
 }
 
 // hideNotice();
+import "trix"
+import "@rails/actiontext"
