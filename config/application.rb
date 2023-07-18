@@ -12,7 +12,10 @@ module Portfolio
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    config.generators.system_tests = { test_framework: :rspec }
+    config.generators do |g|
+      g.system_tests = { test_framework: :rspec }
+      g.test_framework :rspec
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #
