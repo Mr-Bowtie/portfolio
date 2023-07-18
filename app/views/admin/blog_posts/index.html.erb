@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+  <section id="blog-index" class="section">
+    <div class="container is-flex is-flex-direction-column is-justify-content-center">
+      <div class="container">
+        <header class="section_header">
+          <div class="title">
+            <h1 data-text="Blog posts" class="has-text-highlight-2 title is-1">Blog posts</h1>
+          </div>
+        </header>
+      </div>
+
+
+    <div id="blog_posts">
+      <% @blog_posts.each do |blog_post| %>
+        <%= render blog_post %>
+        <p>
+          <%= link_to "Show this blog post", blog_post %>
+        </p>
+      <% end %>
+    </div>
+
+    <div class="button is-info is-outlined">
+      <%= link_to "New blog post", new_blog_post_path %>
+    </div>
+
+  </div>
+</section>
