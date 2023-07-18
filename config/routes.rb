@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :blog_posts, only: %i[show index]
   get '/home', to: 'portfolio#home'
   get '/about', to: 'portfolio#about'
   get '/portfolio', to: 'portfolio#portfolio'
