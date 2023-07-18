@@ -9,7 +9,7 @@
 vendor/bundle
 node_modules
 tags
-
+doc
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
